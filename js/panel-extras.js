@@ -16,7 +16,7 @@
   var PACKAGES = [
     { id: "ucretsiz", name: "Ücretsiz", price: "0 TL", text: "Profil + haftada 6 maç" },
     { id: "standart", name: "Standart", price: "499 TL/ay", text: "Sınırsız maç, kampanya" },
-    { id: "one-cikan", name: "Öne Çıkan", price: "1.499 TL/ay", text: "Listede üst sırada, “Öne çıkan” etiketi" }
+    { id: "one-cikan", name: "Öne Çıkan", price: "1.499 TL/ay", text: "Listede üst sırada, “Öne çıkarılan” etiketi" }
   ];
 
   var el = {

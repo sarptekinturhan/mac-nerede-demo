@@ -165,7 +165,7 @@
       : geo.status === "unavailable" ? dense + " · Bu tarayıcı konum paylaşmayı desteklemiyor"
       : dense + " · Konum izni verirsen yakınlığa göre sıralarım";
     // Ratings do not change the order in v0.5 (later version). The promoted slot is labelled honestly.
-    if (pinned) text += " · En üstteki “Öne çıkan” mekan ücretli listelemedir";
+    if (pinned) text += " · En üstteki mekan öne çıkarılmıştır";
     return '<p class="sort-line" id="sort-info" aria-live="polite">' + text + "</p>";
   }
 
@@ -259,7 +259,7 @@
       '<span class="sr-only"> puan,</span> (' + sum.count + '<span class="sr-only"> yorum</span>)</span>' : "";
   }
 
-  var PROMO_BADGE = '<span class="promo-badge">Öne çıkan</span>';
+  var PROMO_BADGE = '<span class="promo-badge">Öne çıkarılan</span>';
 
   // Card (decision #19): name + distance, type (+ v0.5 small rating, "Öne çıkan" label), the single next
   // relevant match, one row of badges ("Kampanya" first when a campaign applies to the selected match).
@@ -363,7 +363,7 @@
     var cardScope = { league: f.league, match: c.match, matchIds: sortScope.matchIds, favs: favs, ratings: ratingSummaries() };
     var card = function (v) { return venueCard(region, f, v, cardScope, matches, now); };
     resultsEl.innerHTML = (slot.pinned
-      ? '<section class="promo-slot" aria-labelledby="promo-title"><p class="promo-title" id="promo-title">Öne çıkan <span class="hint">· ücretli listeleme</span></p>' +
+      ? '<section class="promo-slot" aria-labelledby="promo-title"><p class="promo-title" id="promo-title">Öne çıkarılan</p>' +
         '<ul class="cards">' + card(slot.pinned) + "</ul></section>" : "") +
       (slot.rest.length ? '<ul class="cards">' + slot.rest.map(card).join("") + "</ul>" : "");
   }
