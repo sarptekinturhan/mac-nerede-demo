@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Maç Nerede? · Prototip</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html">Maç Nerede?</a>
+    <nav class="nav">
+      <a href="index.html" aria-current="page">Maç bul</a>
+      <a href="panel.html">Mekan paneli</a>
+    </nav>
+  </header>
+
+  <div class="region-bar">
+    <label for="region">Bölge</label>
+    <select id="region"></select>
+  </div>
+
+  <main id="main">
+    <section id="view"></section>
+    <div id="map-wrap" hidden>
+      <div id="map" role="region" aria-label="Mekan haritası"></div>
+      <p id="map-error" class="notice" hidden>Harita yüklenemedi (internet bağlantısını kontrol edin). Liste yine de çalışır.</p>
+      <p id="geo-msg" class="geo-msg" role="status" hidden></p>
+    </div>
+    <section id="results"></section>
+  </main>
+
+  <div id="menu-viewer" class="menu-viewer" role="dialog" aria-modal="true" aria-labelledby="menu-viewer-title" hidden></div>
+
+  <footer class="footer">
+    <p class="footer-line">Prototip · Veriler sentetiktir</p>
+    <div class="footer-tools">
+      <div id="flow-switch" class="flow-switch" role="group" aria-label="Akış (kullanılabilirlik testi için)">
+        <span>Akış:</span>
+        <button type="button" class="flow-btn" data-flow="a" aria-pressed="true">Mekan önce</button>
+        <span aria-hidden="true">·</span>
+        <button type="button" class="flow-btn" data-flow="b" aria-pressed="false">Maç önce</button>
+      </div>
+      <p class="timer"><button type="button" class="link-btn" id="timer-btn">Görev süresini ölç</button> <span id="timer-out" role="status"></span></p>
+      <button type="button" class="link-btn" id="reset-viewer">Yorumlarımı ve takımlarımı sıfırla</button>
+      <p id="footer-status" class="status" role="status"></p>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="data/regions.js"></script>
+  <script src="data/matches.js"></script>
+  <script src="data/venues.js"></script>
+  <script src="data/menus.js"></script>
+  <script src="data/reviews.js"></script>
+  <script src="js/logic.js"></script>
+  <script src="js/discover.js"></script>
+  <script src="js/reviews.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/viewer-reviews.js"></script>
+  <script src="js/viewer-teams.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

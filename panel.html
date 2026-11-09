@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mekan paneli · Maç Nerede? · Prototip</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html">Maç Nerede?</a>
+    <nav class="nav">
+      <a href="index.html">Maç bul</a>
+      <a href="panel.html" aria-current="page">Mekan paneli</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <h1>Mekan paneli</h1>
+    <p class="notice">Prototip: değişiklikler yalnızca bu tarayıcıda saklanır.</p>
+
+    <div class="login">
+      <label for="venue-select">Demo girişi: mekanını seç</label>
+      <select id="venue-select">
+        <option value="">Mekan seçin…</option>
+      </select>
+      <p class="hint">Gerçek giriş (şifre/hesap) bu prototipte yok; herkes her mekanı seçebilir.</p>
+    </div>
+
+    <form id="venue-form" hidden novalidate>
+      <fieldset>
+        <legend>Yayın platformlarım</legend>
+        <div id="platform-checks" class="platform-checks"></div>
+        <p class="hint">TRT Spor ücretsiz yayın olduğu için her mekanda var sayılır.</p>
+        <p id="platform-note" class="status" role="status"></p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Göstereceğim maçlar</legend>
+        <div id="match-checks" class="checks"></div>
+        <p class="hint">Fikstürdeki maçların işaretini kaldırabilirsin; kendi eklediğin maçları silebilirsin. Soluk satırlar, sahip olmadığın bir platformda yayınlanıyor.</p>
+      </fieldset>
+
+      <fieldset id="add-match" class="add-match">
+        <legend>Listede olmayan bir maç ekle</legend>
+        <p class="hint">Ör. NBA, alt lig, yabancı lig. Eklediğin maç hemen kaydedilir ve izleyicilere "mekan ekledi" etiketiyle görünür.</p>
+        <label class="field">Lig / spor
+          <input id="cm-league" type="text" list="league-list" maxlength="40" autocomplete="off" aria-describedby="cm-league-err" required>
+        </label>
+        <datalist id="league-list"></datalist>
+        <p id="cm-league-err" class="error field-err" hidden></p>
+        <label class="field">Maç adı
+          <input id="cm-title" type="text" maxlength="80" placeholder="Fenerbahçe Beko – Real Madrid" autocomplete="off" aria-describedby="cm-title-err" required>
+        </label>
+        <p id="cm-title-err" class="error field-err" hidden></p>
+        <div class="row">
+          <label class="field">Tarih
+            <input id="cm-date" type="date" aria-describedby="cm-date-err" required>
+          </label>
+          <label class="field">Saat
+            <input id="cm-time" type="time" aria-describedby="cm-time-err" required>
+          </label>
+        </div>
+        <p id="cm-date-err" class="error field-err" hidden></p>
+        <p id="cm-time-err" class="error field-err" hidden></p>
+        <label class="field">Yayıncı / kanal <span class="optional">(isteğe bağlı)</span>
+          <input id="cm-broadcaster" type="text" maxlength="40" placeholder="ör. S Sport" autocomplete="off" aria-describedby="cm-broadcaster-err">
+        </label>
+        <p id="cm-broadcaster-err" class="error field-err" hidden></p>
+        <p id="cm-form-err" class="error field-err" hidden></p>
+        <button type="button" id="cm-add" class="btn">Maçı ekle</button>
+        <p id="cm-status" class="status" role="status"></p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Mekan bilgileri</legend>
+        <label class="field">Ekran sayısı
+          <input id="screens" type="number" inputmode="numeric" min="0" max="50" step="1" required>
+        </label>
+        <label class="field check">
+          <input id="soundOn" type="checkbox"> Maç sesi açık
+        </label>
+        <label class="field">Kapasite (kişi)
+          <input id="capacity" type="number" inputmode="numeric" min="0" max="5000" step="1" required>
+        </label>
+      </fieldset>
+
+      <fieldset id="features-box">
+        <legend>Özellikler</legend>
+        <p class="hint">İzleyiciler mekanları bu özelliklere göre süzebilir. İşaretlediğin anda kaydedilir.</p>
+        <div id="feature-checks" class="feature-checks"></div>
+        <p id="feature-status" class="status" role="status"></p>
+      </fieldset>
+
+      <fieldset id="campaign-box" class="add-campaign">
+        <legend>Kampanyalar</legend>
+        <p class="hint">En fazla 3 kampanya. Eklediğin veya sildiğin anda kaydedilir. Süresi dolan kampanya izleyiciye görünmez.</p>
+        <ul id="camp-list" class="camp-list"></ul>
+        <div id="camp-add">
+          <label class="field">Kampanya metni <span class="optional">(en fazla 80 karakter)</span>
+            <input id="camp-text" type="text" maxlength="80" placeholder="ör. Maç boyunca çay 20 TL" autocomplete="off" aria-describedby="camp-text-err">
+          </label>
+          <p id="camp-text-err" class="error field-err" hidden></p>
+          <label class="field">Hangi maçta?
+            <select id="camp-match" aria-describedby="camp-match-err"></select>
+          </label>
+          <p id="camp-match-err" class="error field-err" hidden></p>
+          <label class="field">Bitiş tarihi <span class="optional">(isteğe bağlı)</span>
+            <input id="camp-end" type="date" aria-describedby="camp-end-err">
+          </label>
+          <p id="camp-end-err" class="error field-err" hidden></p>
+          <button type="button" id="camp-add-btn" class="btn">Kampanyayı ekle</button>
+        </div>
+        <p id="camp-full" class="hint" hidden>3 kampanya sınırına ulaştın. Yenisini eklemek için birini sil.</p>
+        <p id="camp-status" class="status" role="status"></p>
+      </fieldset>
+
+      <fieldset id="menu-box">
+        <legend>Menü</legend>
+        <p class="hint">Fotoğraf (JPG, PNG) veya PDF yükleyebilirsin; en fazla 12 sayfa. Yüklediğin sayfalar küçültülür ve hemen kaydedilir.</p>
+        <label class="btn file-btn">Menü yükle
+          <input id="menu-file" class="sr-only" type="file" accept="image/*,application/pdf" multiple>
+        </label>
+        <p id="menu-sample" class="hint" hidden>Şu an örnek (sentetik) menü görünüyor. Yükleme yaparsan onun yerine geçer.</p>
+        <p id="menu-busy" class="status" role="status"></p>
+        <p id="menu-error" class="error field-err" role="alert" hidden></p>
+        <ul id="menu-thumbs" class="menu-thumbs"></ul>
+        <button type="button" id="menu-clear" class="link-btn danger" hidden>Menüyü kaldır</button>
+        <p class="hint">Prototip: menü yalnızca bu tarayıcıda saklanır.</p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Rezervasyon</legend>
+        <label class="field check">
+          <input id="res-accepts" type="checkbox"> Rezervasyon alıyoruz
+        </label>
+        <div id="res-fields" class="res-fields">
+          <label class="field">Nasıl?
+            <select id="res-method">
+              <option value="">Seçin…</option>
+              <option value="telefon">Telefonla</option>
+              <option value="whatsapp">WhatsApp'tan</option>
+              <option value="instagram">Instagram'dan</option>
+            </select>
+          </label>
+          <label class="field">Not <span class="optional">(isteğe bağlı, en fazla 80 karakter)</span>
+            <input id="res-note" type="text" maxlength="80" placeholder="ör. Derbi günleri en az 1 gün önce" autocomplete="off">
+          </label>
+        </div>
+        <p class="hint">İzleyiciler kartta "Rezervasyon" rozetini, detayda nasıl aldığını görür. Kaydet'e basınca geçerli olur.</p>
+      </fieldset>
+
+      <p id="form-error" class="error" role="alert" hidden></p>
+      <div class="actions">
+        <button type="submit" class="btn primary">Kaydet</button>
+        <button type="button" id="reset" class="btn">Demo verisine dön</button>
+      </div>
+      <p id="status" class="status" role="status"></p>
+    </form>
+
+    <section id="boost" class="boost" aria-labelledby="boost-title" hidden>
+      <h2 id="boost-title">Öne çık</h2>
+      <p class="notice">Örnek fiyatlar; pazar araştırması yapılmadı. Prototipte ödeme yok.</p>
+      <div id="packages" class="packages"></div>
+    </section>
+
+    <section id="reports" class="reports" hidden>
+      <h2 class="section">Bu mekan hakkındaki bildirimler</h2>
+      <p class="hint">İzleyicilerin "Sorun bildir" ile gönderdikleri. Prototip: yalnızca bu tarayıcıda gönderilenler görünür.</p>
+      <div id="reports-list"></div>
+    </section>
+  </main>
+
+  <footer class="footer">Prototip · Veriler sentetiktir</footer>
+
+  <script src="data/regions.js"></script>
+  <script src="data/matches.js"></script>
+  <script src="data/venues.js"></script>
+  <script src="data/menus.js"></script>
+  <script src="js/logic.js"></script>
+  <script src="js/discover.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/menu-upload.js"></script>
+  <script src="js/panel-extras.js"></script>
+  <script src="js/panel.js"></script>
+</body>
+</html>
